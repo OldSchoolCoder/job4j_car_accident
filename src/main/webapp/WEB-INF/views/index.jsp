@@ -45,16 +45,16 @@
                 <c:forEach items="${accidents}" var="accident">
                     <tr>
                         <td>
-                            <c:out value="${accident.value.getId()}"/>
+                            <c:out value="${accident.getId()}"/>
                         </td>
                         <td>
-                            <c:out value="${accident.value.getName()}"/>
+                            <c:out value="${accident.getName()}"/>
                         </td>
                         <td>
-                            <c:out value="${accident.value.getText()}"/>
+                            <c:out value="${accident.getText()}"/>
                         </td>
                         <td>
-                            <c:out value="${accident.value.getAddress()}"/>
+                            <c:out value="${accident.getAddress()}"/>
                         </td>
                     </tr>
                 </c:forEach>
