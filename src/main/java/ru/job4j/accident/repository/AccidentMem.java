@@ -21,4 +21,7 @@ public class AccidentMem {
     public Collection<Accident> getAccidents() {
         return accidents.values();
     }
+
+    public void create(Accident accident) {
+    }
 }
