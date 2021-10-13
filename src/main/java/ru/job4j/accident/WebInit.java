@@ -1,5 +1,6 @@
 package ru.job4j.accident;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.FilterGenerator;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
