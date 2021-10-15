@@ -24,6 +24,25 @@ public class Accident {
         return address;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Accident() {
+    }
+
     public Accident(int id, String name, String text, String address) {
         this.id = id;
         this.name = name;
@@ -44,5 +63,15 @@ public class Accident {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, text, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Accident{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

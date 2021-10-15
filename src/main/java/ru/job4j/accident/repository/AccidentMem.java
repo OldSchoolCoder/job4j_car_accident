@@ -10,18 +10,20 @@ import java.util.Map;
 @Repository
 public class AccidentMem {
 
-    private Map<Integer, Accident> accidents = new HashMap<>();
+    private final Map<Integer, Accident> accidents = new HashMap<>();
+    private Integer key = 0;
 
     public AccidentMem() {
-        Accident accident = new Accident(1, "Alarm", "Wow!",
+        Accident accident = new Accident(0, "Alarm", "Wow!",
                 "Los Angels");
-        accidents.put(1, accident);
+        accidents.put(0, accident);
     }
 
     public Collection<Accident> getAccidents() {
         return accidents.values();
     }
 
-    public void create(Accident accident) {
+    public void save(Accident accident) {
+        accidents.put(++key, accident);
     }
 }
