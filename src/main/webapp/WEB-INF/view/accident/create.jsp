@@ -2,6 +2,7 @@
 <%@ page import="java.util.Collection" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
 <html lang="en">
@@ -35,22 +36,24 @@
             <div class="modal-body p-5 pt-0">
                 <form action="<c:url value='/save'/>" method='POST'>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="floatingInput"
-                               placeholder="name@example.com">
+                        <input type="hidden" name="id" value="0" id="hidden">
+                        <input type="text" class="form-control rounded-4" id="floatingInput"
+                               placeholder="name@example.com" name="name">
                         <label for="floatingInput">Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control rounded-4" id="floatingPass"
-                               placeholder="Password">
+                        <input type="text" class="form-control rounded-4" id="floatingPass"
+                               placeholder="Password" name="text">
                         <label for="floatingPass">Text</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control rounded-4" id="floatingPassword"
-                               placeholder="Password">
+                        <input type="text" class="form-control rounded-4" id="floatingPassword"
+                               placeholder="Password" name="address">
                         <label for="floatingPassword">Address</label>
                     </div>
                     <button class="w-100 mb-4 btn btn-lg rounded-4 text-white"
-                            style="background-color: rgb(16, 194, 0);" type="submit">Add accident</button>
+                            style="background-color: rgb(16, 194, 0);" type="submit">Create accident
+                    </button>
                     <a href="http://localhost:8080/accident"
                        class="w-100 py-2 mb-2 btn btn-outline-success rounded-4">Go to main page</a>
                 </form>

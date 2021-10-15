@@ -1,29 +1,39 @@
 package ru.job4j.accident.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.service.AccidentService;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 public class AccidentControl {
 
-    private final AccidentMem accidents;
+    private static final Logger LOGGER = Logger.getLogger(AccidentControl
+            .class.getName());
 
-    public AccidentControl(AccidentMem accidents) {
-        this.accidents = accidents;
+    private final AccidentService accidentService;
+    private int id;
+
+    public AccidentControl(AccidentService accidentService) {
+        this.accidentService = accidentService;
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
         return "accident/create";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        accidents.create(accident);
+        accident.setId(++id);
+        accidentService.save(accident);
         return "redirect:/";
     }
 }
