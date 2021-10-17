@@ -52,7 +52,7 @@
                     <button class="w-100 mb-4 btn btn-lg rounded-4 text-white"
                             style="background-color: rgb(16, 194, 0);" type="submit">Edit accident
                     </button>
-                    <a href="http://localhost:8080/accident"
+                    <a href="/accident"
                        class="w-100 py-2 mb-2 btn btn-outline-success rounded-4">Go to main page</a>
                 </form>
             </div>

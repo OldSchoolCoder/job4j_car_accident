@@ -28,7 +28,7 @@
 <body class="text-center" style="padding-top: 4.5rem; min-height: 75rem;">
 <nav class="navbar navbar-light bg-light rounded navbar-expand-md fixed-top">
     <div class="container-fluid text-white justify-content-md-center">
-        <a href="http://localhost:8080/accident/create"
+        <a href="/accident/create"
            class="w-50 py-2 mb-2 btn btn-outline-success rounded-4">Add accident</a>
     </div>
 </nav>

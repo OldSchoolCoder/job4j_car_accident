@@ -19,7 +19,6 @@ public class AccidentControl {
             .class.getName());
 
     private final AccidentService accidentService;
-    private int id;
 
     public AccidentControl(AccidentService accidentService) {
         this.accidentService = accidentService;
@@ -32,7 +31,6 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        accident.setId(++id);
         accidentService.save(accident);
         return "redirect:/";
     }
