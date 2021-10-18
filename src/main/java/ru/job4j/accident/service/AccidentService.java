@@ -5,6 +5,7 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class AccidentService {
@@ -21,5 +22,9 @@ public class AccidentService {
 
     public void save(Accident accident) {
         accidentMem.save(accident);
+    }
+
+    public Optional<Accident> findById(int id) {
+        return accidentMem.findById(id);
     }
 }

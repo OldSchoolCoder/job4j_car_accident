@@ -2,13 +2,11 @@ package ru.job4j.accident.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.service.AccidentService;
 
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,5 +31,16 @@ public class AccidentControl {
     public String save(@ModelAttribute Accident accident) {
         accidentService.save(accident);
         return "redirect:/";
+    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("id") int id, Model model) throws Exception {
+        Optional<Accident> accidentOptional = accidentService.findById(id);
+        if (accidentOptional.isPresent()) {
+            model.addAttribute("accident", accidentOptional.get());
+        } else {
+            throw new Exception("Error! Accident not found!");
+        }
+        return "accident/update";
     }
 }
