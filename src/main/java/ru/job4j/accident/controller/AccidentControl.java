@@ -4,8 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.repository.AccidentMem;
 import ru.job4j.accident.service.AccidentService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +28,8 @@ public class AccidentControl {
 
     @GetMapping("/create")
     public String create(Model model) {
+        List<AccidentType> types = new AccidentMem().getTypes();
+        model.addAttribute("types", types);
         return "accident/create";
     }
 

@@ -1,25 +1,43 @@
 package ru.job4j.accident.repository;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import ru.job4j.accident.controller.AccidentControl;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.model.AccidentType;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Repository
 public class AccidentMem {
 
+    private static final Logger LOGGER = Logger.getLogger(AccidentMem
+            .class.getName());
     private final Map<Integer, Accident> accidents = new HashMap<>();
-    AtomicInteger counter = new AtomicInteger();
+    private final AtomicInteger counter = new AtomicInteger();
+    private final List<AccidentType> types = new ArrayList<>();
+
+    public AccidentMem() {
+        types.add(AccidentType.of(0, "Two cars"));
+        types.add(AccidentType.of(1, "Car and human"));
+        types.add(AccidentType.of(2, "Car and bike"));
+    }
+
+    public List<AccidentType> getTypes() {
+        return types;
+    }
 
     public Collection<Accident> getAccidents() {
         return accidents.values();
     }
 
     public void save(Accident accident) {
+        int typeId = accident.getType().getId();
+        String typeName = types.get(typeId).getName();
+        accident.getType().setName(typeName);
         if (accident.getId() == 0) {
             accident.setId(counter.incrementAndGet());
         }

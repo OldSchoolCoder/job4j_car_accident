@@ -8,15 +8,17 @@ public class Accident {
     private String name;
     private String text;
     private String address;
+    private AccidentType type;
 
     public Accident() {
     }
 
-    public Accident(int id, String name, String text, String address) {
+    public Accident(int id, String name, String text, String address, AccidentType type) {
         this.id = id;
         this.name = name;
         this.text = text;
         this.address = address;
+        this.type = type;
     }
 
     public int getId() {
@@ -35,6 +37,10 @@ public class Accident {
         return address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -49,6 +55,10 @@ public class Accident {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
     }
 
     @Override
@@ -73,6 +83,7 @@ public class Accident {
                 ", name='" + name + '\'' +
                 ", text='" + text + '\'' +
                 ", address='" + address + '\'' +
+                ", type=" + type +
                 '}';
     }
 }

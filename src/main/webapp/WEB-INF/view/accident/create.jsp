@@ -51,6 +51,14 @@
                                placeholder="Password" name="address">
                         <label for="floatingPassword">Address</label>
                     </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="type.id">
+                            <option selected>Type</option>
+                            <c:forEach var="type" items="${types}" >
+                                <option value="${type.id}">${type.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                     <button class="w-100 mb-4 btn btn-lg rounded-4 text-white"
                             style="background-color: rgb(16, 194, 0);" type="submit">Create accident
                     </button>
