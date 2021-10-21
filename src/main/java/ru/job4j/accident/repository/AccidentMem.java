@@ -36,8 +36,8 @@ public class AccidentMem {
 
     public void save(Accident accident) {
         int typeId = accident.getType().getId();
-        String typeName = types.get(typeId).getName();
-        accident.getType().setName(typeName);
+        AccidentType type = types.get(typeId);
+        accident.setType(type);
         if (accident.getId() == 0) {
             accident.setId(counter.incrementAndGet());
         }
