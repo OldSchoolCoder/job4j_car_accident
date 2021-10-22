@@ -59,6 +59,14 @@
                             </c:forEach>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <select multiple size="2" class="form-select" name="rIds">
+                            <option selected>Rules</option>
+                            <c:forEach var="rule" items="${rules}">
+                                <option value="${rule.id}">${rule.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                     <button class="w-100 mb-4 btn btn-lg rounded-4 text-white"
                             style="background-color: rgb(16, 194, 0);" type="submit">Create accident
                     </button>

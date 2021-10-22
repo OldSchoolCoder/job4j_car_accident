@@ -5,9 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentMem;
 import ru.job4j.accident.service.AccidentService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,12 +32,16 @@ public class AccidentControl {
     public String create(Model model) {
         List<AccidentType> types = new AccidentMem().getTypes();
         model.addAttribute("types", types);
+        List<Rule> rules = new AccidentMem().getRules();
+        model.addAttribute("rules", rules);
         return "accident/create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident) {
-        accidentService.save(accident);
+    public String save(@ModelAttribute Accident accident,
+                       HttpServletRequest req) {
+        String[] rIds = req.getParameterValues("rIds");
+        accidentService.save(accident, rIds);
         return "redirect:/";
     }
 

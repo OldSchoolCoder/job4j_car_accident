@@ -21,8 +21,8 @@ public class AccidentService {
         return accidentMem.getAccidents();
     }
 
-    public void save(Accident accident) {
-        accidentMem.save(accident);
+    public void save(Accident accident, String[] rIds) {
+        accidentMem.save(accident, rIds);
     }
 
     public Optional<Accident> findById(int id) {
