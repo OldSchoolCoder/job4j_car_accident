@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/OldSchoolCoder/job4j_car_accident.svg?branch=MayBe)](https://travis-ci.com/OldSchoolCoder/job4j_car_accident)
+
 В блоке Spring мы будем разрабатывать проект - Автонарушители.
 
 В системе существуют две роли. Обычные пользователи и автоинспекторы.
