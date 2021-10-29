@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 import ru.job4j.accident.service.AccidentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +30,9 @@ public class AccidentControl {
 
     @GetMapping("/create")
     public String create(Model model) {
-        List<AccidentType> types = new AccidentMem().getTypes();
+        List<AccidentType> types = accidentService.getTypes();
         model.addAttribute("types", types);
-        List<Rule> rules = new AccidentMem().getRules();
+        List<Rule> rules = accidentService.getRules();
         model.addAttribute("rules", rules);
         return "accident/create";
     }
@@ -46,7 +46,8 @@ public class AccidentControl {
     }
 
     @GetMapping("/update")
-    public String update(@RequestParam("id") int id, Model model) throws Exception {
+    public String update(@RequestParam("id") int id, Model model)
+            throws Exception {
         Optional<Accident> accidentOptional = accidentService.findById(id);
         if (accidentOptional.isPresent()) {
             model.addAttribute("accident", accidentOptional.get());
