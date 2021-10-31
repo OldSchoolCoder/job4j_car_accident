@@ -20,10 +20,11 @@ public class AccidentJdbcTemplate {
     }
 
     public Optional<Accident> findById(int id) {
-        return jdbc.query("select a.id, a.name, a.text, a.address from " +
-                        "accident a left join type on a.type_id=type.id " +
-                        "where a.id=?", new Object[]{id},
-                new BeanPropertyRowMapper<>(Accident.class)
+        return jdbc.query("select distinct a.id, a.name, a.text, a.address " +
+                        "from accident a left join type on a.type_id=type.id " +
+                        "left join accident_rules ar on a.id = ar.accident_id " +
+                        "left join rule r on ar.rules_id = r.id where a.id=?",
+                new Object[]{id}, new BeanPropertyRowMapper<>(Accident.class)
         ).stream().findAny();
     }
 
@@ -54,8 +55,10 @@ public class AccidentJdbcTemplate {
     }
 
     public Collection<Accident> getAccidents() {
-        return jdbc.query("select a.id, a.name, a.text, a.address from " +
-                        "accident a left join type on a.type_id=type.id ",
+        return jdbc.query("select distinct a.id, a.name, a.text, a.address " +
+                        "from accident a left join type on a.type_id=type.id " +
+                        "left join accident_rules ar on a.id = ar.accident_id " +
+                        "left join rule r on ar.rules_id = r.id",
                 new BeanPropertyRowMapper<>(Accident.class));
     }
 
