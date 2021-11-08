@@ -44,16 +44,16 @@ public class AccidentControl {
         accidentService.save(accident, rIds);
         return "redirect:/";
     }
-//
-//    @GetMapping("/update")
-//    public String update(@RequestParam("id") int id, Model model)
-//            throws Exception {
-//        Optional<Accident> accidentOptional = accidentService.findById(id);
-//        if (accidentOptional.isPresent()) {
-//            model.addAttribute("accident", accidentOptional.get());
-//        } else {
-//            throw new Exception("Error! Accident not found!");
-//        }
-//        return "accident/update";
-//    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("id") int id, Model model)
+            throws Exception {
+        Optional<Accident> accidentOptional = accidentService.findById(id);
+        if (accidentOptional.isPresent()) {
+            model.addAttribute("accident", accidentOptional.get());
+        } else {
+            throw new Exception("Error! Accident not found!");
+        }
+        return "accident/update";
+    }
 }

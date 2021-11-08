@@ -21,24 +21,28 @@ public class AccidentService {
         this.accidentHibernate = accidentHibernate;
     }
 
+    @Transactional
     public Collection<Accident> getAccidents() {
         return accidentHibernate.getAccidents();
     }
 
+    @Transactional
     public List<AccidentType> getTypes() {
         return accidentHibernate.getTypes();
     }
 
+    @Transactional
     public List<Rule> getRules() {
         return accidentHibernate.getRules();
     }
 
-    //@Transactional
+    @Transactional
     public void save(Accident accident, String[] rIds) {
         accidentHibernate.save(accident, rIds);
     }
-//
-//    public Optional<Accident> findById(int id) {
-//        return accidentHibernate.findById(id);
-//    }
+
+    @Transactional
+    public Optional<Accident> findById(int id) {
+        return accidentHibernate.findById(id);
+    }
 }

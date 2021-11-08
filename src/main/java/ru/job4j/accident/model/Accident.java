@@ -18,11 +18,13 @@ public class Accident {
     //@JoinColumn(name = "type_id")
     private AccidentType type;
 
+    //@OneToMany(cascade = CascadeType.MERGE)
+    //@OneToMany(cascade = CascadeType.REFRESH)
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     //@JoinColumn(name = "accident_id")
-    @JoinTable(name = "accident_rule",
-            joinColumns = @JoinColumn(name = "accident_id"),
-    inverseJoinColumns = @JoinColumn(name = "rules_id"))
+//    @JoinTable(name = "accident_rule",
+//            joinColumns = @JoinColumn(name = "accident_id"),
+//    inverseJoinColumns = @JoinColumn(name = "rules_id"))
     private Set<Rule> rules=new HashSet<>();
     //private List<Rule> rules=new ArrayList<>();
 
