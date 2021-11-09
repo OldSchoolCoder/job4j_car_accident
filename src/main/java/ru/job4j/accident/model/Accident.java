@@ -1,16 +1,24 @@
 package ru.job4j.accident.model;
 
-import java.util.Objects;
-import java.util.Set;
+import javax.persistence.*;
+import java.util.*;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
+
+    @OneToOne
     private AccidentType type;
-    private Set<Rule> rules;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Rule> rules = new HashSet<>();
 
     public Accident() {
     }
@@ -25,8 +33,16 @@ public class Accident {
         this.rules = rules;
     }
 
+    public void addRule(Rule rule) {
+        this.rules.add(rule);
+    }
+
     public int getId() {
         return id;
+    }
+
+    public Set<Rule> getRules() {
+        return rules;
     }
 
     public String getName() {

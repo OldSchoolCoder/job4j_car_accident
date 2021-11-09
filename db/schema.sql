@@ -36,8 +36,9 @@ values (1, 'Rule. 2');
 insert into rule (id, name)
 values (2, 'Rule. 3');
 
-create table accident_rules
+create table accident_rule
 (
-    accident_id serial not null references accident (id),
-    rules_id    serial not null references rule (id)
+    accident_id integer not null references accident (id),
+    rules_id    integer not null references rule (id),
+    constraint accident_rule_pkey primary key (accident_id, rules_id)
 );
