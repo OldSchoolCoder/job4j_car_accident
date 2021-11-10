@@ -14,7 +14,7 @@ public class Accident {
     private String text;
     private String address;
 
-    @OneToOne
+    @ManyToOne
     private AccidentType type;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
