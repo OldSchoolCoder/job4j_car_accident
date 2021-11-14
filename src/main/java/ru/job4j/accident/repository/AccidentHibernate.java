@@ -13,7 +13,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
+/**
+ * @Repository
+ */
 public class AccidentHibernate {
 
     private final SessionFactory sf;

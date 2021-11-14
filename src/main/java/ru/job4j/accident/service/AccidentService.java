@@ -5,40 +5,65 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentHibernate;
-import ru.job4j.accident.repository.AccidentJdbcTemplate;
+import ru.job4j.accident.repository.AccidentRepository;
+import ru.job4j.accident.repository.RuleRepository;
+import ru.job4j.accident.repository.TypeRepository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
 public class AccidentService {
 
-    private final AccidentHibernate accidentHibernate;
+    private final AccidentRepository accidentRepository;
+    private final TypeRepository typeRepository;
+    private final RuleRepository ruleRepository;
 
-    public AccidentService(AccidentHibernate accidentHibernate) {
-        this.accidentHibernate = accidentHibernate;
+    public AccidentService(AccidentRepository accidentRepository,
+                           TypeRepository typeRepository,
+                           RuleRepository ruleRepository) {
+        this.accidentRepository = accidentRepository;
+        this.typeRepository = typeRepository;
+        this.ruleRepository = ruleRepository;
     }
 
-    public Collection<Accident> getAccidents() {
-        return accidentHibernate.getAccidents();
+    public Collection<Accident> findAll() {
+        return (Collection<Accident>) accidentRepository.findAll();
     }
 
     public List<AccidentType> getTypes() {
-        return accidentHibernate.getTypes();
+        return (List<AccidentType>) typeRepository.findAll();
     }
 
     public List<Rule> getRules() {
-        return accidentHibernate.getRules();
+        return (List<Rule>) ruleRepository.findAll();
     }
 
-    public void save(Accident accident, String[] rIds) {
-        accidentHibernate.save(accident, rIds);
+    public void save(Accident newAccident, String[] rIds) {
+        if (rIds == null) {
+            update(newAccident);
+        } else {
+            create(newAccident, rIds);
+        }
+        accidentRepository.save(newAccident);
+    }
+
+    private void create(Accident newAccident, String[] rIds) {
+        List<Integer> integerList = new ArrayList<>();
+        List<String> stringList = Arrays.asList(rIds);
+        stringList.forEach(str -> integerList.add(Integer.parseInt(str)));
+        Iterable<Rule> rules = ruleRepository.findAllById(integerList);
+        rules.forEach(newAccident::addRule);
+    }
+
+    private void update(Accident newAccident) {
+        int id = newAccident.getId();
+        Optional<Accident> accidentOptional = accidentRepository.findById(id);
+        Set<Rule> rules = accidentOptional.orElseThrow().getRules();
+        newAccident.setRules(rules);
     }
 
     public Optional<Accident> findById(int id) {
-        return accidentHibernate.findById(id);
+        return accidentRepository.findById(id);
     }
 }

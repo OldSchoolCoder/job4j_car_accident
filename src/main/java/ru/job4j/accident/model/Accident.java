@@ -17,7 +17,8 @@ public class Accident {
     @ManyToOne
     private AccidentType type;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH}, orphanRemoval = true)
     private Set<Rule> rules = new HashSet<>();
 
     public Accident() {
