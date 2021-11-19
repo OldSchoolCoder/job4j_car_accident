@@ -25,13 +25,40 @@
     <title>Main page</title>
 </head>
 
+
 <body class="text-center" style="padding-top: 4.5rem; min-height: 75rem;">
-<nav class="navbar navbar-light bg-light rounded navbar-expand-md fixed-top">
-    <div class="container text-white justify-content-md-center">
-        <a href="/accident/create"
-           class="mx-1 w-50 py-2 mb-2 btn btn-outline-success rounded-4">Add accident</a>
-        <a href="/accident/login"
-           class="mx-1 w-50 py-2 mb-2 btn btn-outline-success rounded-4">Login</a>
+<nav class="navbar  bg-light  fixed-top">
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"></header>
+        <a href="/accident/"
+           class="d-flex align-items-center mx-3 mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span style="font-size: 2rem; padding-right: 10px;">
+                    <span style="color: rgb(16, 194, 04);">
+                        <i class="fab fa-accusoft" aria-hidden="true"></i>
+                    </span>
+                </span>
+            <span class="fs-4 mx-3">Cars accidents</span>
+        </a>
+        <div class="text-end mx-1">
+            <a href="/accident/create" class="mx-1  btn btn-outline-success rounded-4">Add
+                accident</a>
+        </div>
+        <div class="dropdown">
+            <a href="/accident/login"
+               class="d-flex mx-3 align-items-center link-dark text-decoration-none dropdown-toggle"
+               id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span style="font-size: 2rem; padding-right: 10px;">
+                        <span style="color: rgb(16, 194, 04);">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        </span>
+                    </span>
+                <div class="text-dark">${user.username}</div>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" href="/accident/login">Sign out</a></li>
+            </ul>
+        </div>
+        </header>
     </div>
 </nav>
 <div class="container pt-3">
