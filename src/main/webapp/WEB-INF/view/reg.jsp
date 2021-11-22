@@ -22,7 +22,7 @@
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Login</title>
+    <title>Sign-up</title>
 </head>
 
 <body>
@@ -30,13 +30,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-5 shadow text-center">
             <div class="p-5 pb-4 border-bottom-0">
-                <h2 class="fw-bold mb-1">Login</h2>
-                <c:if test="${not empty errorMessage}">
-                    <h5 class="modal-title">${errorMessage}</h5>
-                </c:if>
+                <h2 class="fw-bold mb-1">Sign-up</h2>
             </div>
             <div class="modal-body p-5 pt-0">
-                <form name='login' action="<c:url value='/login'/>" method='POST'>
+                <form name='login' action="<c:url value='/reg'/>" method='POST'>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-4" id="floatingInput"
                                placeholder="name@example.com" name="username">
@@ -50,9 +47,8 @@
                     <button class="w-100 mb-4 btn btn-lg rounded-4 text-white"
                             style="background-color: rgb(16, 194, 0);" type="submit" name="submit" value="submit">Submit
                     </button>
-                    <a href="/accident/reg" class="w-100 py-2 mb-2 btn btn-outline-success rounded-4">Sign-up
-                        </a>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <a href="/accident" class="w-100 py-2 mb-2 btn btn-outline-success rounded-4">Go to main
+                        page</a>
                 </form>
             </div>
         </div>
@@ -65,3 +61,4 @@
 </body>
 
 </html>
+
